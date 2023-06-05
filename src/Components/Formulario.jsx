@@ -1,20 +1,19 @@
 import {Card, Button, Form} from 'react-bootstrap';
+import { useState } from 'react';
 
-const Formulario = () => {
+const Formulario = ({filtraNoticias}) => {
+    const [busca, setBusca] = useState('');
     return (
         <div>
             <Card>
                 <Card.Body>
                     <section className="mx-auto w-100 p-4">
                         <Form>
-                            <Form.Group controlId="color" className="d-flex justify-content-between">
-                                <Form.Select>
-                                    <option>Buscar por categoria</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </Form.Select>
-                                <Button type="submit" variant="primary" className="mt-2 mx-3">Buscar</Button>
+                            <Form.Group controlId="noticia" className="d-flex justify-content-between">
+                                <Form.Control type="text" placeholder="Ingrese el nombre del articulo a buscar" 
+                                value={busca} onChange={(e) => {setBusca(e.target.value)}}/>
+                                <Button type="button" variant="primary" className="mt-2 mx-3" onClick={(e) => {
+                                    filtraNoticias(busca)}}>Buscar</Button>
                             </Form.Group>
                         </Form>
                     </section>
